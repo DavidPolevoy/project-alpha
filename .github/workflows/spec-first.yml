@@ -1,0 +1,26 @@
+# Spec-first: open feature/<f>/main in the product repo before any code repo has pushed it.
+# Humans cannot create protected branches here (the ruleset's `creation` rule), so the follow App does.
+# Run: gh workflow run spec-first -R <owner>/project-alpha -f feature=billing-v2
+name: spec-first
+on:
+  workflow_dispatch:
+    inputs:
+      feature: { description: "feature name (creates feature/<feature>/main from dev)", required: true }
+concurrency: { group: follow, cancel-in-progress: false }
+permissions: { contents: read }
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    steps:
+      - env: { FEATURE: "${{ inputs.feature }}" }
+        run: '[[ "$FEATURE" =~ ^[a-z0-9][a-z0-9-]*$ ]] || { echo "::error::feature must be kebab-case"; exit 1; }'
+      - uses: actions/create-github-app-token@v1
+        id: app
+        with: { app-id: "${{ vars.FOLLOW_APP_ID }}", private-key: "${{ secrets.FOLLOW_APP_KEY }}" }
+      - env:
+          GH_TOKEN: "${{ steps.app.outputs.token }}"
+          FEATURE: "${{ inputs.feature }}"
+        run: |
+          sha=$(gh api "repos/${{ github.repository }}/git/ref/heads/dev" --jq .object.sha)
+          gh api "repos/${{ github.repository }}/git/refs" -f ref="refs/heads/feature/$FEATURE/main" -f sha="$sha"
+          echo "feature/$FEATURE/main created from dev at $sha by ${{ github.actor }} (spec-only until a code repo pushes it)"

@@ -1,5 +1,5 @@
 name: project-alpha
-url: ${env:SANDBOX_ORIGINS}/project-alpha.git
+url: https://github.com/DavidPolevoy/project-alpha.git
 path: ${workspaceFolder}
 class: product
 production_branch: main

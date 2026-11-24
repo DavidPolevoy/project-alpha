@@ -1,0 +1,10 @@
+# Paths that need a peer review. Everything not listed (qa-runs, research-docs) merges on auto-merge
+# once dreamteamer-check passes. Keep this in step with governance.yaml.
+/data/adrs/        @DavidPolevoy @DavdPolevoy
+/data/specs/       @DavidPolevoy @DavdPolevoy
+/data/decisions/   @DavidPolevoy @DavdPolevoy
+/governance.yaml   @DavidPolevoy @DavdPolevoy
+/modules/          @DavidPolevoy @DavdPolevoy
+/package.json      @DavidPolevoy @DavdPolevoy
+/.claude/          @DavidPolevoy @DavdPolevoy
+/bin/              @DavidPolevoy @DavdPolevoy
