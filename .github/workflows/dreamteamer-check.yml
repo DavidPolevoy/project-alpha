@@ -1,0 +1,15 @@
+# Required status check on every PR into a protected branch: the schema gate.
+name: dreamteamer-check
+on:
+  pull_request:
+  merge_group:
+jobs:
+  dreamteamer-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci --no-audit --no-fund
+      - run: npx dreamteamer compile
+      - run: npx dreamteamer check

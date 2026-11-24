@@ -1,5 +1,5 @@
 name: app-api
-url: ${env:SANDBOX_ORIGINS}/app-api.git
+url: https://github.com/DavidPolevoy/app-api.git
 path: ${workspaceFolder}/../app-api
 class: code
 production_branch: master

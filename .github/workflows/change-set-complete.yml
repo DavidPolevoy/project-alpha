@@ -1,0 +1,16 @@
+# Ordinary PRs pass this check at once. Follow PRs get their status from follow-apply, which sets it
+# to success only when every linked code repo holding the branch has merged it.
+name: change-set-complete
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions: { statuses: write }
+jobs:
+  status:
+    if: ${{ !startsWith(github.head_ref, 'follow/') }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: >
+          gh api "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }}"
+          -f state=success -f context=change-set-complete -f description="not a follow PR"
+        env: { GH_TOKEN: "${{ github.token }}" }

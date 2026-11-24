@@ -1,0 +1,24 @@
+# The product half of "code drives". Code repos dispatch their branch and merge events here.
+name: follow-apply
+on:
+  repository_dispatch:
+    types: [code-branch-created, code-branch-deleted, code-pr-merged]
+concurrency: { group: follow, cancel-in-progress: false }
+permissions: { contents: write, pull-requests: write, statuses: write }
+jobs:
+  follow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app
+        with: { app-id: "${{ vars.FOLLOW_APP_ID }}", private-key: "${{ secrets.FOLLOW_APP_KEY }}", owner: "${{ github.repository_owner }}" }
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0, token: "${{ steps.app.outputs.token }}" }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci --no-audit --no-fund
+      - run: node .github/scripts/follow.mjs
+        env:
+          GH_TOKEN: "${{ steps.app.outputs.token }}"
+          EVENT: "${{ github.event.action }}"
+          PAYLOAD: "${{ toJson(github.event.client_payload) }}"

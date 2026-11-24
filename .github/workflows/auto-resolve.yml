@@ -1,0 +1,24 @@
+# When a protected branch moves, PRs into it may now conflict. If every conflict is a FALSE one (each
+# side changed different fields of a record), merge the base into the PR branch field by field.
+# Protected heads are never written; true conflicts get the `conflict` (or `drift`) label.
+# The push uses the follow App's token: a push made with GITHUB_TOKEN starts no workflows, so
+# dreamteamer-check would never re-run on the resolved head and the PR would wait forever.
+name: auto-resolve
+on:
+  push:
+    branches: [main, dev, "release/*", "hotfix/*", "feature/*/*"]
+permissions: { contents: read }
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app
+        with: { app-id: "${{ vars.FOLLOW_APP_ID }}", private-key: "${{ secrets.FOLLOW_APP_KEY }}" }
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0, token: "${{ steps.app.outputs.token }}" }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci --no-audit --no-fund
+      - run: node .github/scripts/auto-resolve.mjs "${{ github.ref_name }}"
+        env: { GH_TOKEN: "${{ steps.app.outputs.token }}" }
