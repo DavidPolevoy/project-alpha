@@ -1,0 +1,17 @@
+name: decisions
+record_title: '{{ title }}'
+description: A product decision with its rationale.
+ids:
+  from: '{{ title | slug }}'
+  pattern: ^[a-z0-9-]+$
+fields:
+  title:
+    type: string
+    required: true
+  decided_on:
+    type: date
+  rationale:
+    type: string
+  body:
+    type: markdown
+    body: true

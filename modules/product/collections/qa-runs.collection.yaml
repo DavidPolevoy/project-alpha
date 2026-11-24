@@ -1,0 +1,23 @@
+name: qa-runs
+record_title: '{{ title }}'
+description: One QA pass against a build — the result and where it ran.
+ids:
+  from: '{{ title | slug }}'
+  pattern: ^[a-z0-9-]+$
+fields:
+  title:
+    type: string
+    required: true
+  result:
+    type: string
+    default: blocked
+    enum: [pass, fail, blocked]
+  environment:
+    type: string
+    default: staging
+    enum: [staging, production]
+  build:
+    type: string
+  body:
+    type: markdown
+    body: true

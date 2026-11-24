@@ -1,0 +1,22 @@
+name: specs
+record_title: '{{ title }}'
+description: A technical or product spec for a feature — what it must do, on the branch that builds it.
+ids:
+  from: '{{ title | slug }}'
+  pattern: ^[a-z0-9-]+$
+fields:
+  title:
+    type: string
+    required: true
+  status:
+    type: string
+    default: draft
+    enum: [draft, review, approved]
+  owner:
+    type: string
+  scope:
+    type: string
+    description: One line on what is in scope.
+  body:
+    type: markdown
+    body: true

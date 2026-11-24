@@ -2,7 +2,8 @@ node_modules/
 git_modules/
 .worktrees/
 .dreamteamer/
-.claude/
+.claude/*
+!.claude/settings.json
 .agents/
 .cursor/
 /CLAUDE.md
@@ -13,3 +14,4 @@ git_modules/
 media/
 .screenshots/
 .cache/
+node_modules

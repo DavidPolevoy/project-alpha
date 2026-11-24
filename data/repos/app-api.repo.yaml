@@ -1,0 +1,10 @@
+name: app-api
+url: ${env:SANDBOX_ORIGINS}/app-api.git
+path: ${workspaceFolder}/../app-api
+class: code
+production_branch: master
+description: 'Code repo linked to project-alpha: its branches drive this repo''s branches.'
+staging_branch: dev
+created: '2026-11-24T09:02:47+02:00'
+ref: main
+visibility: private

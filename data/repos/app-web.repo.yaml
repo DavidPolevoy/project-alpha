@@ -1,0 +1,10 @@
+name: app-web
+url: ${env:SANDBOX_ORIGINS}/app-web.git
+path: ${workspaceFolder}/../app-web
+class: code
+production_branch: main
+description: 'Code repo linked to project-alpha: its branches drive this repo''s branches.'
+staging_branch: dev
+created: '2026-11-24T09:02:48+02:00'
+ref: main
+visibility: private

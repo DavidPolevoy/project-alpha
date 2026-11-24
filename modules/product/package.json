@@ -1,0 +1,8 @@
+{
+  "name": "product",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Product, design, dev and QA records for Project Alpha, branch-coupled to its code repos.",
+  "files": ["collections", "skills"],
+  "dreamteamer": {}
+}

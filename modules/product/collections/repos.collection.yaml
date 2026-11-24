@@ -1,0 +1,13 @@
+name: repos
+overlay: true
+fields:
+  class:
+    type: string
+    enum: [product, ledger, code]
+    description: How the repo's branches are governed — code drives, product follows code, ledger keeps main as the truth.
+  staging_branch:
+    type: string
+    description: The branch deployed to staging (the Staging role).
+  production_branch:
+    type: string
+    description: The branch deployed to production (the Production role).

@@ -5,18 +5,23 @@
 	"dreamteamer": {
 		"data_path": "data",
 		"harnesses": [
-			"claude-code",
-			"codex",
-			"pi",
-			"gemini-cli",
-			"cursor"
+			"claude-code"
 		],
 		"gitignore_runtime_folder": true,
-		"workspace_module": "default",
+		"workspace_module": "product",
 		"git_modules": {},
-		"disable": []
+		"disable": [],
+		"vars": [
+			"SANDBOX_ORIGINS"
+		]
 	},
 	"dependencies": {
+		"@dreamteamer/worktrees": "0.2.0",
 		"dreamteamer": "0.50.0"
+	},
+	"scripts": {
+		"dt": "dreamteamer",
+		"compile": "dreamteamer compile",
+		"check": "dreamteamer check"
 	}
 }

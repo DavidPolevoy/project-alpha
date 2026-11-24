@@ -1,0 +1,20 @@
+name: adrs
+record_title: '{{ title }}'
+description: An architecture decision record — one technical choice, its context and its consequences, on the branch whose code it describes.
+ids:
+  from: '{{ title | slug }}'
+  pattern: ^[a-z0-9-]+$
+fields:
+  title:
+    type: string
+    required: true
+  status:
+    type: string
+    default: proposed
+    enum: [proposed, accepted, superseded, rejected]
+  owner:
+    type: string
+    description: Who drives the decision.
+  body:
+    type: markdown
+    body: true

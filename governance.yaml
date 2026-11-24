@@ -1,0 +1,12 @@
+# Merge policy and protected branches. Repo identity and branch roles live in data/repos/*.repo.yaml.
+protected: [main, dev, "release/*", "hotfix/*", "feature/*/*"]
+policies:
+  - paths: ["data/adrs/**", "data/specs/**", "data/decisions/**"]
+    merge: review
+    approvals: 1
+  - paths: ["data/qa-runs/**", "data/research-docs/**"]
+    merge: auto
+  - paths: ["data/repos/**", "governance.yaml", "modules/**", "package.json", "package-lock.json", "bin/**", ".claude/**", "DREAMTEAMER.md"]
+    merge: review
+    approvals: 1
+default: { merge: review, approvals: 1 }

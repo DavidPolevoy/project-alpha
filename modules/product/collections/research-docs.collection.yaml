@@ -1,0 +1,13 @@
+name: research-docs
+record_title: '{{ title }}'
+description: A finding gathered from outside sources.
+ids:
+  from: '{{ title | slug }}'
+  pattern: ^[a-z0-9-]+$
+fields:
+  title:
+    type: string
+    required: true
+  body:
+    type: markdown
+    body: true
