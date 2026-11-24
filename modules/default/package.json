@@ -1,0 +1,16 @@
+{
+	"name": "default",
+	"private": true,
+	"version": "0.0.1",
+	"description": "This workspace's own collections, skills and commands.",
+	"files": [
+		"collections",
+		"skills",
+		"agents",
+		"commands",
+		"command-bindings",
+		"ui-views",
+		"mixins"
+	],
+	"dreamteamer": {}
+}

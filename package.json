@@ -1,0 +1,22 @@
+{
+	"name": "project-alpha",
+	"private": true,
+	"version": "0.0.1",
+	"dreamteamer": {
+		"data_path": "data",
+		"harnesses": [
+			"claude-code",
+			"codex",
+			"pi",
+			"gemini-cli",
+			"cursor"
+		],
+		"gitignore_runtime_folder": true,
+		"workspace_module": "default",
+		"git_modules": {},
+		"disable": []
+	},
+	"dependencies": {
+		"dreamteamer": "0.50.0"
+	}
+}

@@ -1,0 +1,15 @@
+node_modules/
+git_modules/
+.worktrees/
+.dreamteamer/
+.claude/
+.agents/
+.cursor/
+/CLAUDE.md
+/AGENTS.md
+/GEMINI.md
+/NOTEBOOKLM.md
+.env
+media/
+.screenshots/
+.cache/
